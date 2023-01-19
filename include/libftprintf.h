@@ -13,9 +13,12 @@
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 
-#include "libft.h"
+#include "../Libft/libft.h"
 #include <stdarg.h>
 
 int ft_printf(const char *, ...);
+void	ft_putnbr_base_signed(long long nbr, const char *base);
+void	ft_putnbr_base_unsigned(unsigned long nbr, const char *base);
+void	ft_print_hexa(unsigned long ptr);
 
 #endif
