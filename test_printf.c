@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "./include/ft_printf.h"
 
 int	main(void)
 {
@@ -7,6 +8,6 @@ int	main(void)
 
 	a = 1844555555;
 	ptr = malloc(sizeof(char) * 10);
-	printf("je m'appelle %s, j'ai %d ans et ma lettre preferee est %c et mon pointeur est a l'adresse %p et ceci est un %%, ceci est une decimqle non signe %u", "antonin", a, 'a', ptr, a);
+	ft_printf("je m'appelle %s, j'ai %d ans et ma lettre preferee est %c et mon pointeur est a l'adresse %p et ceci est un %%, ceci est une decimqle non signe %u", "antonin", a, 'a', ptr, a);
 	return (0);
-}
+} 

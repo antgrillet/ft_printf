@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
 
 static int	ft_error_base(const char *base)
 {
@@ -40,7 +40,7 @@ static int	ft_error_base(const char *base)
 	return (0);
 }
 
-void	ft_putnbr_base_signed(long long nbr, const char *base)
+int	ft_putnbr_base_signed(unsigned long long nbr, const char *base)
 {
 	int	c;
 	int	b;
@@ -48,7 +48,7 @@ void	ft_putnbr_base_signed(long long nbr, const char *base)
 	b = ft_strlen(base);
 	c = 0;
 	if ((ft_error_base(base)) == 1)
-		return ;
+		return (0);
 	else
 	{
 		if (nbr < 0)
@@ -66,4 +66,5 @@ void	ft_putnbr_base_signed(long long nbr, const char *base)
 		else
 			ft_putchar_fd(base[nbr], 1);
 	}
+	return (ft_strlen(base));
 }
