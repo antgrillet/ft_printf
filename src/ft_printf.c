@@ -12,7 +12,7 @@
 
 #include "../include/ft_printf.h"
 
-int	what_type_and_print(char *cp_format, va_list ap, int i)
+int	what_type_and_print(const char *cp_format, va_list ap, int i)
 {
 				if(cp_format[i + 1] == 'c')
 					return(ft_putchar_printf(va_arg(ap, int)));
@@ -37,44 +37,28 @@ int	what_type_and_print(char *cp_format, va_list ap, int i)
 int ft_printf(const char *format, ...)
 {
 	va_list		ap;
-	char		*cp_format;
 	int			i;
 	int			count;
 
-	cp_format = strdup(format);
-	if(!cp_format)
+	i = 0;
+	count = 0;
+	if(!format)
 		return (0);
 	va_start(ap, format);
-	while(cp_format[i])
+	while(format[i])
 	{
-		if(cp_format[i] == '%')
+		if(format[i] == '%')
 		{
-			count =  count + what_type_and_print(cp_format, ap, i);
+			count =  count + what_type_and_print(format, ap, i);
 			i++;
 		}
 		else
 		{
-			ft_putchar_fd(cp_format[i],1);
+			ft_putchar_fd(format[i],1);
 			count++;
 		}
 		i++;
 	}
 	va_end(ap);
-	return(i);
+	return(count);
 }
-
-/*
-int	main(void)
-{
-	char	name[] = "Antonin";
-	int		i = 19;
-	int		a = -145;
-	unsigned long long	max = 18446744073709551615;
-	void	*ptr;
-
-	a = -1844555555;
-	ptr = malloc(sizeof(char) * 10);
-	ft_printf("je m'appelle %s , j'ai %d, pour un nombre negatif je dirais %d, le max d'un nombre decimal pas signe est %u\n",name,i,a,max);
-	return (0);
-}
-*/

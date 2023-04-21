@@ -40,7 +40,7 @@ static int	ft_error_base(const char *base)
 	return (0);
 }
 
-int	ft_putnbr_base_signed(unsigned long long nbr, const char *base)
+int		ft_putnbr_base_signed(long long nbr, const char *base)
 {
 	int	c;
 	int	b;
