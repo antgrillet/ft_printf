@@ -44,8 +44,10 @@ int		ft_putnbr_base_signed(long long nbr, const char *base)
 {
 	int	c;
 	int	b;
+	int i;
 
 	b = ft_strlen(base);
+	i = 0;
 	c = 0;
 	if ((ft_error_base(base)) == 1)
 		return (0);
@@ -56,15 +58,17 @@ int		ft_putnbr_base_signed(long long nbr, const char *base)
 			ft_putchar_fd('-', 1);
 			nbr = nbr * -1;
 		}
-		if (nbr >= (long long)ft_strlen(base))
+		if (nbr >= 16)
 		{
 			c = nbr % b;
 			nbr = nbr / b;
 			ft_putnbr_base_signed(nbr, base);
 			ft_putchar_fd(base[c], 1);
+			i++;
 		}
 		else
 			ft_putchar_fd(base[nbr], 1);
 	}
-	return (ft_strlen(base));
+	i++;
+	return (i);
 }

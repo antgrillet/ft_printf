@@ -12,54 +12,42 @@
 
 #include "../include/ft_printf.h"
 
-static int	ft_error_base(const char *base)
+static int	count_bytes(unsigned int nbr)
 {
-	unsigned long	i;
-	int				y;
-	int				count;
+	int	counter;
 
-	y = 32;
-	if ((ft_strlen(base)) <= 1)
+	counter = -1;
+	if (nbr == 0)
 		return (1);
-	while (y != 126)
+	while(nbr != 0)
 	{
-		i = 0;
-		count = 0;
-		while (i < ft_strlen(base))
-		{
-			if (base[i] == y)
-				count++;
-			if (count == 2)
-				return (1);
-			if (base[i] == 43 || base[i] == 45)
-				return (1);
-			i++;
-		}
-		y++;
+		nbr = nbr / 10;
+		counter++;
 	}
-	return (0);
+	return(counter);
 }
-
-int		ft_putnbr_base_unsigned(unsigned long nbr, const char *base)
+int		ft_uitoa(unsigned int nbr)
 {
-	int	c;
-	int	b;
-
-	b = ft_strlen(base);
-	c = 0;
-	if ((ft_error_base(base)) == 1)
-		return (0);
-	else
+	char	*str;
+	int		count;
+	int		len;
+	
+	str = malloc(sizeof(char) * count_bytes(nbr) + 2);
+	len = count_bytes(nbr);
+	count = 0;
+	if (nbr == 0)
 	{
-		if (nbr >= (ft_strlen(base)))
-		{
-			c = nbr % b;
-			nbr = nbr / b;
-			ft_putnbr_base_unsigned(nbr, base);
-			ft_putchar_fd(base[c], 1);
-		}
-		else
-			ft_putchar_fd(base[nbr], 1);
+		free(str);
+		return(ft_putchar_printf('0'));
 	}
-	return(ft_strlen(base));
+	while(nbr)
+	{
+		str[len--] = (nbr % 10) + '0';
+		nbr = nbr / 10;
+		count++;
+	}
+	str[count] = '\0';
+	ft_putstr_fd(str, 1);
+	free(str);
+	return(count);
 }
