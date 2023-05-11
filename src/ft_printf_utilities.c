@@ -12,34 +12,33 @@
 
 #include "../include/ft_printf.h"
 
-int		ft_putchar_printf(char c)
+int	ft_putchar_printf(char c)
 {
 	ft_putchar_fd(c, 1);
 	return (1);
 }
 
-int		ft_putstr_printf1(int c)
+int	ft_putnbr_printf(int c)
 {
-	char *str;
-	int count;
+	char	*str;
+	int		count;
 
 	str = ft_itoa(c);
 	count = ft_strlen(str);
-
 	ft_putstr_fd(str, 1);
 	free(str);
-	return(count);
+	return (count);
 }
 
-int		ft_putstr_printf2(char *c)
+int	ft_putstr_printf(char *c)
 {
-	if(c == NULL)
+	if (c == NULL)
 	{
 		ft_putstr_fd("(null)", 1);
 		return (6);
 	}
-	if(!c)
+	if (!c)
 		return (0);
-	ft_putstr_fd(c , 1);
-	return(ft_strlen(c));
+	ft_putstr_fd(c, 1);
+	return (ft_strlen(c));
 }

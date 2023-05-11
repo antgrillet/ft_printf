@@ -12,10 +12,10 @@
 
 #include "../include/ft_printf.h"
 
-int	ft_hexa_x(unsigned int nbr, char *base)
+int	ft_print_x(unsigned int nbr, char *base)
 {
 	if (nbr >= 16)
-		return (ft_hexa_x(nbr / 16, base) + ft_hexa_x(nbr % 16, base));
+		return (ft_print_x(nbr / 16, base) + ft_print_x(nbr % 16, base));
 	else
 		return (ft_putchar_printf(base[nbr]));
 }
@@ -23,7 +23,7 @@ int	ft_hexa_x(unsigned int nbr, char *base)
 int	ft_print_hexa(unsigned long long ptr, char *base)
 {
 	if (ptr >= 16)
-		return (ft_print_hexa(ptr / 16 , base) + ft_print_hexa(ptr % 16, base));
+		return (ft_print_hexa(ptr / 16, base) + ft_print_hexa(ptr % 16, base));
 	else
 		return (ft_putchar_printf(base[ptr]));
 }
@@ -31,16 +31,13 @@ int	ft_print_hexa(unsigned long long ptr, char *base)
 static	int	adress_printer(unsigned long ptr, char *base)
 {
 	ft_putstr_fd("0x", 1);
-	return(ft_print_hexa(ptr, base) + 2);	
+	return (ft_print_hexa(ptr, base) + 2);
 }
 
-int 	verif_hexa(unsigned long ptr, char *base)
+int	verif_hexa(unsigned long ptr, char *base)
 {
 	if (ptr == 0)
-		return(ft_putstr_printf2("(nil)"));
+		return (ft_putstr_printf("(nil)"));
 	else
-		return(adress_printer(ptr, base));
+		return (adress_printer(ptr, base));
 }
-
-
-

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_FILES = ft_printf ft_putnbr_base_signed ft_putnbr_base_unsigned ft_print_hexa ft_printf_utilities
+SRCS_FILES = ft_printf ft_putnbr_base_unsigned ft_print_hexa ft_printf_utilities
 
 NAME = libftprintf.a
 

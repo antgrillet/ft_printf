@@ -14,27 +14,26 @@
 
 int	what_type_and_print(const char *cp_format, va_list *ap, int i)
 {
-				if(cp_format[i + 1] == 'c')
-					return(ft_putchar_printf(va_arg(*ap, int)));
-				if(cp_format[i + 1] == 's')
-					return(ft_putstr_printf2(va_arg(*ap, char  *)));
-				if(cp_format[i + 1] == 'd' || cp_format[i + 1] == 'i')
-					return(ft_putstr_printf1(va_arg(*ap, int)));
-				if(cp_format[i + 1] == '%')
-					return(ft_putchar_printf('%'));
-				if(cp_format[i + 1] == 'p')
-					return(verif_hexa(va_arg(*ap, unsigned long), "0123456789abcdef"));
-				if(cp_format[i + 1] == 'u')
-					return(ft_uitoa(va_arg(*ap, unsigned int)));
-				if(cp_format[i + 1] == 'x')
-					return(ft_hexa_x(va_arg(*ap, unsigned int),"0123456789abcdef"));
-				if(cp_format[i + 1] == 'X')
-					return(ft_hexa_x(va_arg(*ap, unsigned int),"0123456789ABCDEF"));
-
-	return(0);
+	if (cp_format[i + 1] == 'c')
+		return (ft_putchar_printf(va_arg(*ap, int)));
+	if (cp_format[i + 1] == 's')
+		return (ft_putstr_printf(va_arg(*ap, char *)));
+	if (cp_format[i + 1] == 'd' || cp_format[i + 1] == 'i')
+		return (ft_putnbr_printf(va_arg(*ap, int)));
+	if (cp_format[i + 1] == '%')
+		return (ft_putchar_printf('%'));
+	if (cp_format[i + 1] == 'p')
+		return (verif_hexa(va_arg(*ap, unsigned long), "0123456789abcdef"));
+	if (cp_format[i + 1] == 'u')
+		return (ft_uitoa(va_arg(*ap, unsigned int)));
+	if (cp_format[i + 1] == 'x')
+		return (ft_print_x(va_arg(*ap, unsigned int), "0123456789abcdef"));
+	if (cp_format[i + 1] == 'X')
+		return (ft_print_x(va_arg(*ap, unsigned int), "0123456789ABCDEF"));
+	return (0);
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list		*args;
 	int			i;
@@ -43,24 +42,22 @@ int ft_printf(const char *format, ...)
 	i = 0;
 	args = malloc(sizeof(va_list));
 	count = 0;
-	if(!format)
-		return (0);
 	va_start(*args, format);
-	while(format[i])
+	while (format[i])
 	{
-		if(format[i] == '%')
+		if (format[i] == '%')
 		{
-			count =  count + what_type_and_print(format, args, i);
+			count = count + what_type_and_print(format, args, i);
 			i++;
 		}
 		else
 		{
-			ft_putchar_fd(format[i],1);
+			ft_putchar_fd(format[i], 1);
 			count++;
 		}
 		i++;
 	}
 	va_end(*args);
 	free(args);
-	return(count);
+	return (count);
 }

@@ -19,28 +19,29 @@ static int	count_bytes(unsigned int nbr)
 	counter = -1;
 	if (nbr == 0)
 		return (1);
-	while(nbr != 0)
+	while (nbr != 0)
 	{
 		nbr = nbr / 10;
 		counter++;
 	}
-	return(counter);
+	return (counter);
 }
-int		ft_uitoa(unsigned int nbr)
+
+int	ft_uitoa(unsigned int nbr)
 {
 	char	*str;
 	int		count;
 	int		len;
-	
+
 	str = malloc(sizeof(char) * count_bytes(nbr) + 2);
 	len = count_bytes(nbr);
 	count = 0;
 	if (nbr == 0)
 	{
 		free(str);
-		return(ft_putchar_printf('0'));
+		return (ft_putchar_printf('0'));
 	}
-	while(nbr)
+	while (nbr)
 	{
 		str[len--] = (nbr % 10) + '0';
 		nbr = nbr / 10;
@@ -49,5 +50,5 @@ int		ft_uitoa(unsigned int nbr)
 	str[count] = '\0';
 	ft_putstr_fd(str, 1);
 	free(str);
-	return(count);
+	return (count);
 }
