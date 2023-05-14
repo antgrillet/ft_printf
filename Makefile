@@ -14,6 +14,8 @@ SRCS_FILES = ft_printf ft_putnbr_base_unsigned ft_print_hexa ft_printf_utilities
 
 NAME = libftprintf.a
 
+HEADER = include/ft_printf.h
+
 INCLUDE = include
 
 SRC_DIR = src/
@@ -38,7 +40,7 @@ OBJF	=	.cache_exists
 
 all :	Libft $(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ)	$(HEADER)
 				@make -C $(LIBFT)
 				@cp Libft/libft.a ./
 				@mv libft.a $(NAME)
