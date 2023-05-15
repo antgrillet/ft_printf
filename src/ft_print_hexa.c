@@ -36,7 +36,7 @@ static	int	adress_printer(unsigned long ptr, char *base)
 
 int	verif_hexa(unsigned long ptr, char *base)
 {
-	if (ptr < 0)
+	if (ptr == 0)
 		return (ft_putstr_printf("(nil)"));
 	else
 		return (adress_printer(ptr, base));
