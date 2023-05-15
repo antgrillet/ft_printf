@@ -22,7 +22,7 @@ SRC_DIR = src/
 
 OBJ_DIR = obj/
 
-LIBFT = ./Libft
+LIB_DIR = Libft/
 
 CC = gcc
 
@@ -36,29 +36,35 @@ SRC		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCS_FILES)))
 
 OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCS_FILES)))
 
+LIBFT           = $(addprefix $(LIB_DIR), libft.a)
+
 OBJF	=	.cache_exists
 
-all :	Libft $(NAME)
+all :	$(NAME)
 
-$(NAME):	$(OBJ)	$(HEADER)
-				@make -C $(LIBFT)
-				@cp Libft/libft.a ./
-				@mv libft.a $(NAME)
-				@$(AR) $(NAME) $(OBJ)
+$(NAME):	$(LIBFT) $(OBJ) $(HEADER)
+				cp Libft/libft.a ./
+				mv libft.a $(NAME)
+				$(AR) $(NAME) $(OBJ)
 			
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-							@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+							$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 			
 $(OBJF):
 							@mkdir -p $(OBJ_DIR)
+
+$(LIBFT):	FORCE
+			make -C $(LIB_DIR)
+
+FORCE :
 			
 clean:
 		@$(RM) -rf $(OBJ_DIR)
-		@make clean -C $(LIBFT)
+		@make clean -C ./Libft
 
 fclean :	clean
 		@$(RM) $(NAME)
-		@$(RM) $(LIBFT)/libft.a
+		@$(RM) Libft/libft.a
 		
 re: fclean all
 
