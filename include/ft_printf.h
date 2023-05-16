@@ -24,5 +24,6 @@ int	ft_print_x(unsigned int nbr, char *base);
 int	ft_putchar_printf(char c);
 int	ft_putnbr_printf(int c);
 int	ft_putstr_printf(char *c);
+int	check_type(const char *format, va_list args);
 
 #endif

@@ -38,7 +38,7 @@ OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCS_FILES)))
 
 LIBFT           = $(addprefix $(LIB_DIR), libft.a)
 
-OBJF	=	.cache_exists
+OBJF	=	.cache
 
 all :	$(NAME)
 

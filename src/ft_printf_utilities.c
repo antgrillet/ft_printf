@@ -24,6 +24,8 @@ int	ft_putnbr_printf(int c)
 	int		count;
 
 	str = ft_itoa(c);
+	if (str == NULL)
+		return (-1);
 	count = ft_strlen(str);
 	ft_putstr_fd(str, 1);
 	free(str);
@@ -38,7 +40,7 @@ int	ft_putstr_printf(char *c)
 		return (6);
 	}
 	if (!c)
-		return (0);
+		return (-1);
 	ft_putstr_fd(c, 1);
 	return (ft_strlen(c));
 }

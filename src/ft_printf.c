@@ -36,14 +36,28 @@ int	what_type_and_print(const char *cp_format, va_list ap, int i)
 int	ft_printf(const char *format, ...)
 {
 	va_list		args;
-	int			i;
 	int			count;
+
+	count = 0;
+	if (write(1, 0, 0) != 0)
+		return (-1);
+	va_start(args, format);
+	count = check_type(format, args);
+	va_end(args);
+	return (count);
+}
+
+int	check_type(const char *format, va_list args)
+{
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
-	va_start(args, format);
 	while (format[i])
 	{
+		if (format[i] == '%' && !format[i + 1])
+			return (-1);
 		if (format[i] == '%')
 		{
 			count = count + what_type_and_print(format, args, i);
@@ -56,6 +70,5 @@ int	ft_printf(const char *format, ...)
 		}
 		i++;
 	}
-	va_end(args);
 	return (count);
 }

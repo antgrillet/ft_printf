@@ -34,6 +34,8 @@ int	ft_uitoa(unsigned int nbr)
 	int		len;
 
 	str = malloc(sizeof(char) * count_bytes(nbr) + 2);
+	if (!str)
+		return (-1);
 	len = count_bytes(nbr);
 	count = 0;
 	if (nbr == 0)
